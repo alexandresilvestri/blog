@@ -35,6 +35,20 @@ services:
     tty: true
     stdin_open: true
 
+  css:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: bin/rails tailwindcss:watch
+    environment:
+      RAILS_ENV: development
+    volumes:
+      - .:/rails
+      - bundle:/usr/local/bundle
+    depends_on:
+      - app
+    tty: true
+
 volumes:
   pgdata:
   bundle:
