@@ -1,0 +1,61 @@
+ssh:
+  user: alexandresilvestri
+  port: 22
+
+service: blog
+
+image: alexandresilvestri/blog
+
+servers:
+  web:
+    hosts:
+      - 146.190.220.255
+
+deploy_timeout: 120
+
+proxy:
+  ssl: true
+  host: alexandregaspar.online
+
+registry:
+  username: alexandresilvestri
+  password:
+     - KAMAL_REGISTRY_PASSWORD
+
+env:
+  secret:
+    - RAILS_MASTER_KEY
+    - POSTGRES_PASSWORD
+    - DATABASE_URL
+  clear:
+    RAILS_ENV: production
+    SOLID_QUEUE_IN_PUMA: true
+    RAILS_LOG_LEVEL: debug
+
+aliases:
+  console: app exec --interactive --reuse "bin/rails console"
+  shell: app exec --interactive --reuse "bash"
+  logs: app logs -f
+  dbc: app exec --interactive --reuse "bin/rails dbconsole --include-password"
+
+volumes:
+  - "blog-production:/rails/storage"
+
+asset_path: /rails/public/assets
+
+builder:
+  arch: amd64
+
+accessories:
+  db:
+    image: postgres:18
+    host: 146.190.220.255
+    port: "5432"
+    env:
+      clear:
+        POSTGRES_USER: alexandre
+        POSTGRES_DB: blog_production
+      secret:
+        - POSTGRES_PASSWORD
+    volumes:
+      - "blog-pgdata:/var/lib/postgresql"
