@@ -9,9 +9,9 @@ services:
       - pgdata:/var/lib/postgresql
       - ./script/db-init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     ports:
-      - "127.0.0.1:5432:5432"
+      - '127.0.0.1:5432:5432'
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U alexandre -d blog_dev"]
+      test: ['CMD-SHELL', 'pg_isready -U alexandre -d blog_dev']
       interval: 5s
       timeout: 5s
       retries: 5
@@ -21,7 +21,7 @@ services:
       context: .
       dockerfile: Dockerfile.dev
     init: true
-    command: sh -c "rm -f tmp/pids/server.pid && exec bin/rails server -b 0.0.0.0"
+    command: sh -c " bundle check || bundle install && bin/rails livereload:enable && rm -f tmp/pids/server.pid && exec bin/rails server -b 0.0.0.0"
     environment:
       DATABASE_URL: postgres://alexandre@db:5432/blog_dev
       RAILS_ENV: development
@@ -29,7 +29,7 @@ services:
       - .:/rails
       - bundle:/usr/local/bundle
     ports:
-      - "3000:3000"
+      - '3000:3000'
     depends_on:
       db:
         condition: service_healthy
@@ -41,7 +41,7 @@ services:
       context: .
       dockerfile: Dockerfile.dev
     init: true
-    command: ["bin/rails", "tailwindcss:watch"]
+    command: ['bin/rails', 'tailwindcss:watch']
     environment:
       RAILS_ENV: development
     volumes:

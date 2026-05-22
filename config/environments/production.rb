@@ -1,4 +1,4 @@
-require "active_support/core_ext/integer/time"
+require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
   config.enable_reloading = false
@@ -9,7 +9,7 @@ Rails.application.configure do
 
   config.action_controller.perform_caching = true
 
-  config.public_file_server.headers = { "cache-control" => "public, max-age=#{1.year.to_i}" }
+  config.public_file_server.headers = { 'cache-control' => "public, max-age=#{1.year.to_i}" }
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.asset_host = "http://assets.example.com"
@@ -26,9 +26,9 @@ Rails.application.configure do
   config.log_tags = [ :request_id ]
   config.logger   = ActiveSupport::TaggedLogging.logger(STDOUT)
 
-  config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info")
+  config.log_level = ENV.fetch('RAILS_LOG_LEVEL', 'info')
 
-  config.silence_healthcheck_path = "/up"
+  config.silence_healthcheck_path = '/up'
 
   config.active_support.report_deprecations = false
 
@@ -41,7 +41,7 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
-  config.action_mailer.default_url_options = { host: "alexandregaspar.online" }
+  config.action_mailer.default_url_options = { host: 'alexandregaspar.online' }
 
   # Specify outgoing SMTP server. Remember to add smtp/* credentials via bin/rails credentials:edit.
   # config.action_mailer.smtp_settings = {
@@ -59,9 +59,9 @@ Rails.application.configure do
   config.active_record.attributes_for_inspect = [ :id ]
 
   config.hosts = [
-     "alexandregaspar.online",
+     'alexandregaspar.online',
      /.*\.alexandregaspar\.online/
    ]
 
-  config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+  config.host_authorization = { exclude: ->(request) { request.path == '/up' } }
 end
