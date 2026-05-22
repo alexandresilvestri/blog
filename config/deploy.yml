@@ -7,7 +7,7 @@ service: blog
 image: alexandresilvestri/blog
 
 servers:
-  web:
+  app:
     hosts:
       - 146.190.220.255
 
