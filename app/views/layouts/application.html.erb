@@ -1,26 +1,34 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Blog" %></title>
+    <title><%= content_for(:title) || "Gaspar" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="Blog">
+    <meta name="application-name" content="Gaspar">
     <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= yield :head %>
 
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
+    <link rel="icon" href="/fox.png" type="image/png">
+    <link rel="fox-icon" href="/fox.png">
 
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
-    </main>
-  </body>
+  <body class="font-sans text-gray-800 bg-white">
+  <header class="border-b border-gray-200">
+    <div class="max-w-container mx-auto px-4 py-4">
+      <%= link_to root_path, class: "flex itens-center gap-2 text-left text-2xl font-serif font-bold text-brand-900" do %>
+        <%= image_tag "/fox.png", alt: 'Fox', class: "w-8 h-8" %>
+        <h1>Gaspar</h1>
+      <% end %>
+    </div>
+  </header>
+
+  <main class="max-w-container mx-auto px-4 py-12">
+    <%= yield %>
+  </main>
+</body>
 </html>

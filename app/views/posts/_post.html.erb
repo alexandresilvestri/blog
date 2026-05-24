@@ -1,7 +1,16 @@
-<article class="">
-  <h2 class="">
-    <%= link_to post.title, post %>
-  </h2>
-  <p class="">
-  </p>
-</article>
+<li class="py-8">
+  <article class="group">
+    <time class="block text-xs uppercase tracking-widest text-brand-400 mb-2">
+      <%= post.created_at.strftime("%B %d, %Y") %>
+    </time>
+    <h2 class="font-serif text-2xl font-semibold text-brand-900 mb-3 leading-snug">
+      <%= link_to post.title, post, class: "hover:text-accent transition-colors" %>
+    </h2>
+    <p class="text-brand-600 leading-relaxed">
+      <%= truncate(post.post.to_s, length: 180, separator: " ") %>
+    </p>
+    <%= link_to post, class: "inline-block mt-3 text-sm text-accent border-b border-accent-light hover:border-b-2" do %>
+      Read more &rarr;
+    <% end %>
+  </article>
+</li>
