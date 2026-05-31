@@ -1,1 +1,38 @@
+<div class="max-w-prose mx-auto">
+  <header class="mb-12 border-b border-brand-200 pb-6">
+    <h1 class="font-serif text-4xl font-bold text-brand-900 tracking-tight">New post</h1>
+    <p class="mt-2 text-sm text-brand-500">Write something worth keeping.</p>
+  </header>
 
+  <%= form_with model: @post, class: "space-y-8" do |f| %>
+    <% if @post.errors.any? %>
+      <div class="rounded border border-red-200 bg-red-50 p-4 text-sm text-red-700">
+        <p class="font-medium mb-1"><%= pluralize(@post.errors.count, "error") %> stopped this post from saving:</p>
+        <ul class="list-disc list-inside">
+          <% @post.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+      <%= f.label :title, class: "block text-xs uppercase tracking-widest text-brand-400 mb-2" %>
+      <%= f.text_field :title,
+            class: "w-full bg-transparent border-b border-brand-300 focus:border-accent focus:outline-none py-2 font-serif text-2xl text-brand-900 placeholder-brand-300",
+            placeholder: "Title" %>
+    </div>
+
+    <div>
+      <%= f.label :post, "Body", class: "block text-xs uppercase tracking-widest text-brand-400 mb-2" %>
+      <%= f.text_area :post, rows: 16,
+            class: "w-full bg-transparent border border-brand-200 rounded focus:border-accent focus:outline-none p-3 text-brand-700 leading-relaxed placeholder-brand-300",
+            placeholder: "Write your post..." %>
+    </div>
+
+    <div class="flex items-center gap-4 pt-2">
+      <%= f.submit "Publish", class: "text-sm text-accent hover:text-accent-dark border-b border-accent-light hover:border-b-2 cursor-pointer" %>
+      <%= link_to "Cancel", posts_path, class: "text-sm text-brand-400 hover:text-brand-600" %>
+    </div>
+  <% end %>
+</div>
