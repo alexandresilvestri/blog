@@ -1,0 +1,18 @@
+<article class="max-w-prose mx-auto">
+  <header class="mb-10 border-b border-brand-200 pb-6">
+    <time class="block text-xs uppercase tracking-widest text-brand-400 mb-2">
+      <%= @post.created_at.strftime("%B %d, %Y") %>
+    </time>
+    <h1 class="font-serif text-4xl font-bold text-brand-900 tracking-tight leading-tight">
+      <%= @post.title %>
+    </h1>
+  </header>
+
+  <div class="prose text-brand-700 leading-relaxed whitespace-pre-wrap">
+    <%= @post.post %>
+  </div>
+
+  <footer class="mt-12 flex items-center gap-4 border-t border-brand-200 pt-6">
+    <%= link_to "← All posts", posts_path, class: "text-sm text-accent border-b border-accent-light hover:border-b-2" %>
+  </footer>
+</article>
