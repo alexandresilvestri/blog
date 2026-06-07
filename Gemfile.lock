@@ -130,6 +130,9 @@ GEM
       irb (~> 1.10)
       reline (>= 0.3.8)
     diff-lcs (1.6.2)
+    docker-api (2.4.0)
+      excon (>= 0.64.0)
+      multi_json
     dotenv (3.2.0)
     drb (2.2.3)
     ed25519 (1.4.0)
@@ -137,6 +140,8 @@ GEM
     erubi (1.13.1)
     et-orbi (1.4.0)
       tzinfo
+    excon (1.5.0)
+      logger
     ffi (1.17.4-aarch64-linux-gnu)
     ffi (1.17.4-aarch64-linux-musl)
     ffi (1.17.4-arm-linux-gnu)
@@ -207,6 +212,7 @@ GEM
       drb (~> 2.0)
       prism (~> 1.5)
     msgpack (1.8.0)
+    multi_json (1.21.1)
     net-imap (0.6.4)
       date
       net-protocol
@@ -411,6 +417,12 @@ GEM
     tailwindcss-ruby (4.2.2-aarch64-linux-musl)
     tailwindcss-ruby (4.2.2-x86_64-linux-gnu)
     tailwindcss-ruby (4.2.2-x86_64-linux-musl)
+    testcontainers-core (0.2.0)
+      docker-api (~> 2.2)
+    testcontainers-postgres (0.2.0)
+      testcontainers-core (~> 0.1)
+    testcontainers-redis (0.2.0)
+      testcontainers-core (~> 0.1)
     thor (1.5.0)
     thruster (0.1.20)
     thruster (0.1.20-aarch64-linux)
@@ -477,6 +489,8 @@ DEPENDENCIES
   solid_queue
   stimulus-rails
   tailwindcss-rails (~> 4.4)
+  testcontainers-postgres
+  testcontainers-redis
   thruster
   turbo-rails
   web-console
