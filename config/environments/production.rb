@@ -41,7 +41,7 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
-  config.action_mailer.default_url_options = { host: 'alexandregaspar.online' }
+  config.action_mailer.default_url_options = { host: 'alexandresilvestri.com.br' }
 
   # Specify outgoing SMTP server. Remember to add smtp/* credentials via bin/rails credentials:edit.
   # config.action_mailer.smtp_settings = {
@@ -59,8 +59,8 @@ Rails.application.configure do
   config.active_record.attributes_for_inspect = [ :id ]
 
   config.hosts = [
-     'alexandregaspar.online',
-     /.*\.alexandregaspar\.online/
+     'alexandresilvestri.com.br',
+     /.*\.alexandresilvestri\.com.br/
    ]
 
   config.host_authorization = { exclude: ->(request) { request.path == '/up' } }

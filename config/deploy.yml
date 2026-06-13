@@ -15,7 +15,7 @@ deploy_timeout: 120
 
 proxy:
   ssl: true
-  host: alexandregaspar.online
+  host: alexandresilvestri.com.br
 
 registry:
   username: alexandresilvestri
