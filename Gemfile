@@ -9,7 +9,7 @@ gem 'stimulus-rails'
 gem 'jbuilder'
 gem 'bcrypt', '~> 3.1.7'
 gem 'aws-sdk-s3', '~> 1.220'
-gem 'jsbundling-rails', '~> 1.3'
+gem 'importmap-rails'
 gem 'rack-attack', '~> 6.8'
 gem 'tailwindcss-rails', '~> 4.4'
 
