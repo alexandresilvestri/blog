@@ -41,7 +41,6 @@ end
 
 group :test do
   gem 'testcontainers-postgres'
-  gem 'testcontainers-redis'
   gem 'capybara'
   gem 'selenium-webdriver'
 end

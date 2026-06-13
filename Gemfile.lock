@@ -421,8 +421,6 @@ GEM
       docker-api (~> 2.2)
     testcontainers-postgres (0.2.0)
       testcontainers-core (~> 0.1)
-    testcontainers-redis (0.2.0)
-      testcontainers-core (~> 0.1)
     thor (1.5.0)
     thruster (0.1.20)
     thruster (0.1.20-aarch64-linux)
@@ -490,7 +488,6 @@ DEPENDENCIES
   stimulus-rails
   tailwindcss-rails (~> 4.4)
   testcontainers-postgres
-  testcontainers-redis
   thruster
   turbo-rails
   web-console
