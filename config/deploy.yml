@@ -1,13 +1,15 @@
 ssh:
-  user: alexandresilvestri
+  user: root
   port: 22
+  keys:
+    - "~/.ssh/blog_key"
 
 service: blog
 
 image: alexandresilvestri/blog
 
 servers:
-  app:
+  web:
     hosts:
       - 146.190.220.255
 
