@@ -32,7 +32,7 @@ env:
   clear:
     RAILS_ENV: production
     SOLID_QUEUE_IN_PUMA: true
-    RAILS_LOG_LEVEL: debug
+    RAILS_LOG_LEVEL: info
 
 aliases:
   console: app exec --interactive --reuse "bin/rails console"
@@ -53,6 +53,7 @@ accessories:
     image: postgres:18
     host: 146.190.220.255
     port: "5432"
+    cmd: postgres -c shared_buffers=256MB -c work_mem=8MB -c max_connections=30 -c effective_cache_size=512MB
     env:
       clear:
         POSTGRES_USER: alexandre
