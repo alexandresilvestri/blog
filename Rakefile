@@ -28,7 +28,7 @@ namespace :dev do
     sh 'docker compose exec web bin/rails db:seeds'
   end
 
-  desc 'clean database (drop, recreate, migreate, seed)'
+  desc 'clean database (drop, recreate, migrate, seed)'
   task :clean do
     sh 'docker compose exec web bin/rails db:reset'
   end
