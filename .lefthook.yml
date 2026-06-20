@@ -5,8 +5,5 @@ pre-commit:
       glob: "*.rb"
       run: bundle exec rubocop --autocorrect --force-exclusion {staged_files}
       stage_fixed: true
-
-pre-push:
-  commands:
     rspec:
       run: bundle exec rspec
