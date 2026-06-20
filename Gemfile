@@ -37,6 +37,7 @@ group :development do
   gem 'web-console'
   gem 'pry-byebug'
   gem 'hotwire-livereload'
+  gem 'lefthook', require: false
 end
 
 group :test do
