@@ -1,12 +1,13 @@
 <%
-  require "uri"
-  # Derive cache/queue/cable URLs from DATABASE_URL, swapping only the database
-  # name. An explicit `database:` key is ignored when `url:` is set (the URL's
-  # path wins), so the database must be encoded into the URL itself.
+  # Derive cache/queue/cable URLs from DATABASE_URL, swapping only the final
+  # path segment (the database name). An explicit `database:` key is ignored
+  # when `url:` is set (the URL's path wins), so the name must live in the URL.
+  # Use string substitution, not URI.parse: the password contains unescaped
+  # special characters that the strict RFC3986 parser rejects.
   solid_url = ->(name) do
-    u = URI.parse(ENV.fetch("DATABASE_URL", "postgres://localhost/blog_production"))
-    u.path = "/#{name}"
-    u.to_s
+    ENV.fetch("DATABASE_URL", "postgres://localhost/blog_production")
+      .strip
+      .sub(%r{/[^/]+\z}, "/#{name}")
   end
 %>
 default: &default
