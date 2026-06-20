@@ -1,3 +1,14 @@
+<%
+  require "uri"
+  # Derive cache/queue/cable URLs from DATABASE_URL, swapping only the database
+  # name. An explicit `database:` key is ignored when `url:` is set (the URL's
+  # path wins), so the database must be encoded into the URL itself.
+  solid_url = ->(name) do
+    u = URI.parse(ENV.fetch("DATABASE_URL", "postgres://localhost/blog_production"))
+    u.path = "/#{name}"
+    u.to_s
+  end
+%>
 default: &default
   adapter: postgresql
   encoding: unicode
@@ -21,16 +32,13 @@ production:
     url: <%= ENV["DATABASE_URL"] %>
   cache:
     <<: *default
-    url: <%= ENV.fetch("CACHE_DATABASE_URL") { ENV["DATABASE_URL"] } %>
-    database: blog_production_cache
+    url: <%= ENV.fetch("CACHE_DATABASE_URL") { solid_url.call("blog_production_cache") } %>
     migrations_paths: db/cache_migrate
   queue:
     <<: *default
-    url: <%= ENV.fetch("QUEUE_DATABASE_URL") { ENV["DATABASE_URL"] } %>
-    database: blog_production_queue
+    url: <%= ENV.fetch("QUEUE_DATABASE_URL") { solid_url.call("blog_production_queue") } %>
     migrations_paths: db/queue_migrate
   cable:
     <<: *default
-    url: <%= ENV.fetch("CABLE_DATABASE_URL") { ENV["DATABASE_URL"] } %>
-    database: blog_production_cable
+    url: <%= ENV.fetch("CABLE_DATABASE_URL") { solid_url.call("blog_production_cable") } %>
     migrations_paths: db/cable_migrate
