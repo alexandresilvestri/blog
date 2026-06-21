@@ -12,17 +12,15 @@ gem 'aws-sdk-s3', '~> 1.225'
 gem 'importmap-rails'
 gem 'rack-attack', '~> 6.8'
 gem 'tailwindcss-rails', '~> 4.4'
+gem 'rails_icons'
 
 gem 'solid_cache'
 gem 'solid_queue'
 gem 'solid_cable'
 
 gem 'bootsnap', require: false
-
 gem 'kamal', require: false
-
 gem 'thruster', require: false
-
 gem 'image_processing', '~> 2.0'
 
 group :development, :test do
