@@ -13,17 +13,33 @@
 
     <link rel="icon" href="/fox.png" type="image/png">
     <link rel="fox-icon" href="/fox.png">
+    <link rel="github-icon" href="/github.png">
+    <link rel="gitlab-icon" href="/gitlab.png">
 
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
   </head>
 
   <body class="font-sans text-gray-800 bg-white">
   <header class="border-b border-gray-200">
-    <div class="max-w-container mx-auto px-4 py-4">
-      <%= link_to root_path, class: "flex itens-center gap-2 text-left text-2xl font-serif font-bold text-brand-900" do %>
-        <%= image_tag "/fox.png", alt: 'Fox', class: "w-8 h-8" %>
-        <h1>Alexandre Silvestri</h1>
-      <% end %>
+    <div class="flex justify-between w-full px-4 py-4">
+      <div>
+        <%= link_to root_path, class: "flex itens-center gap-2 text-left text-2xl font-serif font-bold text-brand-900" do %>
+          <%= image_tag "/fox.png", alt: 'Fox', class: "w-8 h-8" %>
+          <h1>Alexandre Silvestri</h1>
+        <% end %>
+      </div>
+      <div class="flex gap-4">
+        <div>
+          <%= link_to "https://github.com/alexandresilvestri", target: "_blank", class: "flex itens-center gap-2 text-left text-2xl font-serif font-bold text-brand-900" do %>
+            <%= image_tag "/github.png", alt: 'Github Profile', class: "w-8 h-8" %>
+          <% end %>
+        </div>
+        <div>
+          <%= link_to "https://gitlab.com/alexandre-silvestri", target: "_blank", class: "flex itens-center gap-2 text-left text-2xl font-serif font-bold text-brand-900" do %>
+            <%= image_tag "/gitlab.png", alt: 'Gitlab Profile', class: "w-8 h-8" %>
+          <% end %>
+        </div>
+      </div>    
     </div>
   </header>
 
