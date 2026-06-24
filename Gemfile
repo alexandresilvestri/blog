@@ -13,6 +13,7 @@ gem 'importmap-rails'
 gem 'rack-attack', '~> 6.8'
 gem 'tailwindcss-rails', '~> 4.6'
 gem 'rails_icons'
+gem 'resend'
 
 gem 'solid_cache'
 gem 'solid_queue'
@@ -29,6 +30,7 @@ group :development, :test do
   gem 'bundler-audit', require: false
   gem 'brakeman', require: false
   gem 'rubocop-rails-omakase', require: false
+  gem 'dotenv-rails', group: [:development, :test]
 end
 
 group :development do

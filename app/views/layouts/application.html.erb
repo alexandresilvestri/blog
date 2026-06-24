@@ -39,11 +39,19 @@
             <%= image_tag "/gitlab.png", alt: 'Gitlab Profile', class: "w-8 h-8" %>
           <% end %>
         </div>
-      </div>    
+        <% if user_signed_in? %>
+          <div class="flex items-center">
+            <%= button_to "Sign out", session_path, method: :delete, class: "text-sm text-brand-500 hover:text-accent" %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </header>
 
   <main class="max-w-container mx-auto px-4 py-12">
+    <% flash.each do |type, message| %>
+      <div class="mb-6 text-sm <%= type.to_s == 'alert' ? 'text-red-600' : 'text-brand-600' %>"><%= message %></div>
+    <% end %>
     <%= yield %>
   </main>
 </body>
