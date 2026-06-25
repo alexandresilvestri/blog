@@ -29,6 +29,7 @@ env:
     - RAILS_MASTER_KEY
     - POSTGRES_PASSWORD
     - DATABASE_URL
+    - RESEND_API_KEY
   clear:
     RAILS_ENV: production
     SOLID_QUEUE_IN_PUMA: true
