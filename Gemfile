@@ -23,6 +23,7 @@ gem 'bootsnap', require: false
 gem 'kamal', require: false
 gem 'thruster', require: false
 gem 'image_processing', '~> 2.0'
+gem 'ruby-vips', '~> 2.2'
 
 group :development, :test do
   gem 'rspec-rails', '~> 8.0'
