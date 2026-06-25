@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'Posts', type: :request do
   let!(:admin) { User.create!(email: 'admin@example.com') }
-  let!(:post_record) { Post.create!(title: 'Hello', post: { 'body' => 'hi' }) }
-  let(:valid_params) { { post: { title: 'New', post: 'body text' } } }
+  let!(:post_record) { Post.create!(title: 'Hello', body: 'hi') }
+  let(:valid_params) { { post: { title: 'New', body: 'body text' } } }
 
   describe 'public access (logged out)' do
     it 'allows index' do
@@ -67,6 +67,35 @@ RSpec.describe 'Posts', type: :request do
       expect do
         delete post_path(post_record)
       end.to change(Post, :count).by(-1)
+    end
+  end
+
+  describe 'inline images in body' do
+    let(:blob) do
+      ActiveStorage::Blob.create_and_upload!(
+        io: Rails.root.join('spec/fixtures/files/sample.png').open,
+        filename: 'sample.png',
+        content_type: 'image/png'
+      )
+    end
+
+    let(:post_with_image) do
+      Post.create!(
+        title: 'With image',
+        body: ActionText::Content.new.append_attachables(blob)
+      )
+    end
+
+    it 'persists the embedded image attachment' do
+      expect(post_with_image.body.embeds.count).to eq(1)
+    end
+
+    it 'renders the image inline on show' do
+      get post_path(post_with_image)
+      expect(response).to have_http_status(:ok)
+      expect(response.body).to include('<img')
+      expect(response.body).to include('/rails/active_storage/')
+      expect(response.body).to include('sample.png')
     end
   end
 end
