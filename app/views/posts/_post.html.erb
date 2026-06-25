@@ -8,7 +8,7 @@
         <%= link_to post.title, post, class: "hover:text-accent transition-colors" %>
       </h2>
       <p class="text-brand-600 leading-relaxed">
-        <%= truncate(post.post.to_s, length: 180, separator: " ") %>
+        <%= truncate(post.body.to_plain_text, length: 180, separator: " ") %>
       </p>
       <%= link_to post, class: "inline-block mt-3 text-sm text-accent border-b border-accent-light hover:border-b-2" do %>
         Read more &rarr;
