@@ -1,6 +1,9 @@
-require_relative 'config/application'
-
-Rails.application.load_tasks
+begin
+  require_relative 'config/application'
+  Rails.application.load_tasks
+rescue LoadError, Bundler::GemRequireError => e
+  warn "Skipping Rails task load (#{e.class}): host gems unavailable; only standalone dev:* tasks will run."
+end
 
 namespace :dev do
   desc 'Start containers'
