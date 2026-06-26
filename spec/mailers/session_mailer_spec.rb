@@ -8,7 +8,7 @@ RSpec.describe SessionMailer, type: :mailer do
 
     it 'sends to the user with the configured from and subject' do
       expect(mail.to).to eq(['admin@example.com'])
-      expect(mail.from).to eq([ENV.fetch('MAIL_FROM', 'onboarding@resend.dev')])
+      expect(mail.from).to eq([ENV.fetch('MAIL_FROM', 'magicLink@alexandresilvestri.com.br')])
       expect(mail.subject).to eq('Your sign-in link')
     end
 
