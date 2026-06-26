@@ -8,10 +8,7 @@ end
 namespace :dev do
   desc 'Start containers'
   task :up do
-    sh 'docker compose up -d'
-    until `docker compose ps db --format '{{.Health}}'`.strip == 'healthy'
-      sleep 2
-    end
+    sh 'docker compose up -d --wait'
     sh 'docker compose exec app bin/rails db:migrate'
   end
 
