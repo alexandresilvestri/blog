@@ -1,0 +1,31 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "Simple blog builded with ruby on rails 8 + postgres 18 and hosting on Digital Ocean VPS",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write \"app/**/*.erb\"",
+    "format:check": "prettier --check \"app/**/*.erb\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexandresilvestri/blog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/alexandresilvestri/blog/issues"
+  },
+  "homepage": "https://github.com/alexandresilvestri/blog#readme",
+  "devDependencies": {
+    "@prettier/plugin-ruby": "^1.6.1",
+    "prettier": "^2.2.1",
+    "prettier-plugin-erb": "^0.4.0"
+  }
+}

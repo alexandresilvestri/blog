@@ -1,11 +1,24 @@
 <div class="max-w-prose mx-auto">
-  <header class="mb-16 flex items-baseline justify-between border-b border-brand-200 dark:border-brand-800 pb-6">
+  <header
+    class="mb-16 flex items-baseline justify-between border-b border-brand-200 dark:border-brand-800 pb-6"
+  >
     <div>
-      <h1 class="font-serif text-4xl font-bold text-brand-900 dark:text-brand-100 tracking-tight">Writing</h1>
-      <p class="mt-2 text-sm text-brand-500 dark:text-brand-400">Notes, essays, and scattered thoughts.</p>
+      <h1
+        class="font-serif text-4xl font-bold text-brand-900 dark:text-brand-100 tracking-tight"
+      >
+        Writing
+      </h1>
+      <p class="mt-2 text-sm text-brand-500 dark:text-brand-400">
+        Notes, essays, and scattered thoughts.
+      </p>
     </div>
     <% if user_signed_in? %>
-      <%= link_to 'New post', new_post_path, class: "text-sm text-accent hover:text-accent-dark border-b border-accent-light hover:border-b-2" %>
+      <%=
+        link_to 'New post',
+                new_post_path,
+                class:
+                  'text-sm text-accent hover:text-accent-dark border-b border-accent-light hover:border-b-2'
+      %>
     <% end %>
   </header>
 
@@ -17,4 +30,3 @@
     <p class="text-brand-500 dark:text-brand-400 italic">No posts yet.</p>
   <% end %>
 </div>
-

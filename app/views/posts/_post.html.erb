@@ -1,14 +1,20 @@
 <li class="py-8">
   <article class="flex justify-between w-full group">
     <div>
-      <time class="block text-xs uppercase tracking-widest text-brand-400 dark:text-brand-500 mb-2">
-        <%= post.created_at.strftime("%B %d, %Y") %>
+      <time
+        class="block text-xs uppercase tracking-widest text-brand-400 dark:text-brand-500 mb-2"
+      >
+        <%= post.created_at.strftime('%B %d, %Y') %>
       </time>
-      <h2 class="font-serif text-2xl font-semibold text-brand-900 dark:text-brand-100 mb-3 leading-snug">
-        <%= link_to post.title, post, class: "hover:text-accent transition-colors" %>
+      <h2
+        class="font-serif text-2xl font-semibold text-brand-900 dark:text-brand-100 mb-3 leading-snug"
+      >
+        <%=
+          link_to post.title, post, class: 'hover:text-accent transition-colors'
+        %>
       </h2>
       <p class="text-brand-600 dark:text-brand-400 leading-relaxed">
-        <%= truncate(post.body.to_plain_text, length: 180, separator: " ") %>
+        <%= truncate(post.body.to_plain_text, length: 180, separator: ' ') %>
       </p>
       <%= link_to post, class: "inline-block mt-3 text-sm text-accent border-b border-accent-light hover:border-b-2" do %>
         Read more &rarr;

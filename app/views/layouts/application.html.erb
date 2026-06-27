@@ -1,78 +1,99 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Alexandre Silvestri" %></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="Alexandre Silvestri">
-    <meta name="mobile-web-app-capable" content="yes">
+    <title><%= content_for(:title) || 'Alexandre Silvestri' %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="Alexandre Silvestri" />
+    <meta name="mobile-web-app-capable" content="yes" />
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= yield :head %>
 
-    <link rel="icon" href="/fox.png" type="image/png">
-    <link rel="fox-icon" href="/fox.png">
-    <link rel="github-icon" href="/github.png">
-    <link rel="gitlab-icon" href="/gitlab.png">
+    <link rel="icon" href="/fox.png" type="image/png" />
+    <link rel="fox-icon" href="/fox.png" />
+    <link rel="github-icon" href="/github.png" />
+    <link rel="gitlab-icon" href="/gitlab.png" />
 
     <%= javascript_tag nonce: true do %>
-      (function() {
-        var stored = localStorage.getItem('theme');
-        var dark = stored ? stored === 'dark'
-          : window.matchMedia('(prefers-color-scheme: dark)').matches;
-        document.documentElement.classList.toggle('dark', dark);
-      })();
+      (function () { var stored = localStorage.getItem('theme'); var dark =
+      stored ? stored === 'dark' :
+      window.matchMedia('(prefers-color-scheme:dark)').matches;
+      document.documentElement.classList.toggle('dark', dark); })();
     <% end %>
 
-    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "actiontext", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag 'tailwind', 'data-turbo-track': 'reload' %>
+    <%= stylesheet_link_tag 'actiontext', 'data-turbo-track': 'reload' %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="font-sans text-gray-800 bg-white dark:bg-brand-900 dark:text-brand-100">
-  <header class="border-b border-gray-200 dark:border-brand-800">
-    <div class="flex justify-between w-full px-4 py-4">
-      <div>
-        <%= link_to root_path, class: "flex itens-center gap-2 text-left text-2xl font-serif font-bold text-brand-900 dark:text-brand-100" do %>
-          <%= image_tag "/fox.png", alt: 'Fox', class: "w-8 h-8 shrink-0" %>
-          <h1 class="hidden sm:block">Alexandre Silvestri</h1>
-        <% end %>
-      </div>
-      <div class="flex gap-4">
-        
+  <body
+    class="font-sans text-gray-800 bg-white dark:bg-brand-900 dark:text-brand-100"
+  >
+    <header class="border-b border-gray-200 dark:border-brand-800">
+      <div class="flex justify-between w-full px-4 py-4">
         <div>
-          <%= link_to "https://github.com/alexandresilvestri", target: "_blank", class: "flex itens-center gap-2 text-left text-2xl font-serif font-bold text-brand-900 dark:text-brand-100" do %>
-            <%= image_tag "/github.png", alt: 'Github Profile', class: "w-8 h-8 shrink-0" %>
+          <%= link_to root_path, class: "flex itens-center gap-2 text-left text-2xl font-serif font-bold text-brand-900 dark:text-brand-100" do %>
+            <%= image_tag '/fox.png', alt: 'Fox', class: 'w-8 h-8 shrink-0' %>
+            <h1 class="hidden sm:block">Alexandre Silvestri</h1>
           <% end %>
         </div>
-        <div>
-          <%= link_to "https://gitlab.com/alexandre-silvestri", target: "_blank", class: "flex itens-center gap-2 text-left text-2xl font-serif font-bold text-brand-900 dark:text-brand-100" do %>
-            <%= image_tag "/gitlab.png", alt: 'Gitlab Profile', class: "w-8 h-8 shrink-0" %>
-          <% end %>
-        </div>
-        <div class="flex items-center">
-          <button type="button" data-controller="theme" data-action="theme#toggle"
-                  aria-label="Toggle dark mode"
-                  class="text-brand-900 dark:text-brand-100 hover:text-accent transition-colors">
-            <%= icon "moon", class: "w-8 h-8 hidden dark:block" %>
-            <%= icon "sun", class: "w-8 h-8 block dark:hidden" %>
-          </button>
-        </div>
-        <% if user_signed_in? %>
-          <div class="flex items-center">
-            <%= button_to "Sign out", session_path, method: :delete, class: "text-sm text-brand-500 dark:text-brand-400 hover:text-accent" %>
+        <div class="flex gap-4">
+          <div>
+            <%= link_to "https://github.com/alexandresilvestri", target: "_blank", class: "flex itens-center gap-2 text-left text-2xl font-serif font-bold text-brand-900 dark:text-brand-100" do %>
+              <%=
+                image_tag '/github.png',
+                          alt: 'Github Profile',
+                          class: 'w-8 h-8 shrink-0'
+              %>
+            <% end %>
           </div>
-        <% end %>
+          <div>
+            <%= link_to "https://gitlab.com/alexandre-silvestri", target: "_blank", class: "flex itens-center gap-2 text-left text-2xl font-serif font-bold text-brand-900 dark:text-brand-100" do %>
+              <%=
+                image_tag '/gitlab.png',
+                          alt: 'Gitlab Profile',
+                          class: 'w-8 h-8 shrink-0'
+              %>
+            <% end %>
+          </div>
+          <div class="flex items-center">
+            <button
+              type="button"
+              data-controller="theme"
+              data-action="theme#toggle"
+              aria-label="Toggle dark mode"
+              class="text-brand-900 dark:text-brand-100 hover:text-accent transition-colors"
+            >
+              <%= icon 'moon', class: 'w-8 h-8 hidden dark:block' %>
+              <%= icon 'sun', class: 'w-8 h-8 block dark:hidden' %>
+            </button>
+          </div>
+          <% if user_signed_in? %>
+            <div class="flex items-center">
+              <%=
+                button_to 'Sign out',
+                          session_path,
+                          method: :delete,
+                          class:
+                            'text-sm text-brand-500 dark:text-brand-400 hover:text-accent'
+              %>
+            </div>
+          <% end %>
+        </div>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <main class="max-w-container mx-auto px-4 py-12">
-    <% flash.each do |type, message| %>
-      <div class="mb-6 text-sm <%= type.to_s == 'alert' ? 'text-red-600' : 'text-brand-600' %>"><%= message %></div>
-    <% end %>
-    <%= yield %>
-  </main>
-</body>
+    <main class="max-w-container mx-auto px-4 py-12">
+      <% flash.each do |type, message| %>
+        <div
+          class="mb-6 text-sm <%= type.to_s == 'alert' ? 'text-red-600' : 'text-brand-600' %>"
+        >
+          <%= message %>
+        </div>
+      <% end %>
+      <%= yield %>
+    </main>
+  </body>
 </html>

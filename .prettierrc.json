@@ -1,0 +1,10 @@
+{
+  "printWidth": 80,
+  "plugins": ["prettier-plugin-erb", "@prettier/plugin-ruby"],
+  "overrides": [
+    {
+      "files": "*.erb",
+      "options": { "parser": "erb" }
+    }
+  ]
+}
