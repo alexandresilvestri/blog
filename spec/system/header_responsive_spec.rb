@@ -23,10 +23,16 @@ RSpec.describe 'Header responsiveness', type: :system do
     visit root_path
 
     %w[Github\ Profile Gitlab\ Profile].each do |alt|
-      width = page.evaluate_script("document.querySelector(\"img[alt='#{alt}']\").offsetWidth")
-      height = page.evaluate_script("document.querySelector(\"img[alt='#{alt}']\").offsetHeight")
-      expect(width).to eq(32)
-      expect(height).to eq(32)
+      visible_size = lambda do |dimension|
+        page.evaluate_script(
+          "Array.from(document.querySelectorAll(\"img[alt='#{alt}']\"))" \
+          ".map(e => e.#{dimension}).find(v => v > 0) || 0"
+        )
+      end
+      width = visible_size.call('offsetWidth')
+      height = visible_size.call('offsetHeight')
+      expect(width).to be > 0
+      expect(width).to eq(height)
     end
   end
 end

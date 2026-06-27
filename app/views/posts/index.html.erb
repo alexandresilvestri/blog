@@ -1,5 +1,17 @@
+<% content_for :header_actions do %>
+  <div class="flex items-center lg:hidden">
+    <button
+      type="button"
+      data-action="click->sidebar#open"
+      aria-label="<%= t('.on_this_page') %>"
+      class="text-brand-900 dark:text-brand-100 hover:text-accent transition-colors"
+    >
+      <%= icon 'bars-3', class: 'w-6 h-6' %>
+    </button>
+  </div>
+<% end %>
+
 <div
-  data-controller="sidebar"
   class="lg:grid lg:grid-cols-[1fr_minmax(0,65ch)_1fr] lg:gap-12 max-w-6xl mx-auto"
 >
   <div class="hidden lg:block"></div>
@@ -8,15 +20,6 @@
     <header
       class="mb-16 flex items-center justify-between border-b border-brand-200 dark:border-brand-800 pb-6"
     >
-      <button
-        type="button"
-        data-action="click->sidebar#open"
-        aria-label="<%= t('.on_this_page') %>"
-        class="lg:hidden text-brand-900 dark:text-brand-100 hover:text-accent transition-colors"
-      >
-        <%= icon 'bars-3', class: 'w-6 h-6' %>
-      </button>
-
       <div class="text-center w-full">
         <h1
           class="font-serif text-4xl font-bold text-brand-900 dark:text-brand-100 tracking-tight"
