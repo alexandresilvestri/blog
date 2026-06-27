@@ -1,0 +1,8 @@
+node_modules/
+vendor/
+tmp/
+log/
+public/
+storage/
+db/schema.rb
+app/assets/builds/
