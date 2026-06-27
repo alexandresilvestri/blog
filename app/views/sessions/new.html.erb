@@ -1,13 +1,13 @@
 <div class="max-w-prose mx-auto">
-  <header class="mb-10 border-b border-brand-200 pb-6">
-    <h1 class="font-serif text-4xl font-bold text-brand-900 tracking-tight">Sign in</h1>
-    <p class="mt-2 text-sm text-brand-500">Enter your email and we'll send you a sign-in link.</p>
+  <header class="mb-10 border-b border-brand-200 dark:border-brand-800 pb-6">
+    <h1 class="font-serif text-4xl font-bold text-brand-900 dark:text-brand-100 tracking-tight">Sign in</h1>
+    <p class="mt-2 text-sm text-brand-500 dark:text-brand-400">Enter your email and we'll send you a sign-in link.</p>
   </header>
 
   <%= form_with url: session_path, method: :post do |f| %>
     <div class="mb-4">
       <%= f.email_field :email, required: true, autofocus: true, placeholder: "you@example.com",
-            class: "w-full border border-brand-300 rounded px-3 py-2 focus:outline-none focus:border-accent" %>
+            class: "w-full border border-brand-300 dark:border-brand-700 rounded px-3 py-2 focus:outline-none focus:border-accent" %>
     </div>
     <%= f.submit "Send sign-in link",
           class: "text-sm text-accent hover:text-accent-dark border-b border-accent-light hover:border-b-2 cursor-pointer" %>
