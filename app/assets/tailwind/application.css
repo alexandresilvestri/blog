@@ -1,5 +1,29 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("InterVariable.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("InterVariable-Italic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "MesloLGS";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("MesloLGS-Regular.woff2") format("woff2");
+}
+
 @theme {
   --color-brand-50: #fafafa;
   --color-brand-100: #f4f4f5;
@@ -15,6 +39,8 @@
   --color-accent: #c2410c;
   --color-accent-light: #fb923c;
   --color-accent-dark: #7c2d12;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "MesloLGS", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));

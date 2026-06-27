@@ -1,32 +1,110 @@
-<div class="max-w-prose mx-auto">
-  <header
-    class="mb-16 flex items-baseline justify-between border-b border-brand-200 dark:border-brand-800 pb-6"
-  >
-    <div>
-      <h1
-        class="font-serif text-4xl font-bold text-brand-900 dark:text-brand-100 tracking-tight"
-      >
-        Writing
-      </h1>
-      <p class="mt-2 text-sm text-brand-500 dark:text-brand-400">
-        Notes, essays, and scattered thoughts.
-      </p>
-    </div>
-    <% if user_signed_in? %>
-      <%=
-        link_to 'New post',
-                new_post_path,
-                class:
-                  'text-sm text-accent hover:text-accent-dark border-b border-accent-light hover:border-b-2'
-      %>
-    <% end %>
-  </header>
+<div
+  data-controller="sidebar"
+  class="lg:grid lg:grid-cols-[1fr_minmax(0,65ch)_1fr] lg:gap-12 max-w-6xl mx-auto"
+>
+  <div class="hidden lg:block"></div>
 
-  <% if @posts.any? %>
-    <ul class="divide-y divide-brand-200 dark:divide-brand-800">
-      <%= render @posts %>
-    </ul>
-  <% else %>
-    <p class="text-brand-500 dark:text-brand-400 italic">No posts yet.</p>
-  <% end %>
+  <div class="min-w-0">
+    <header
+      class="mb-16 flex items-center justify-between border-b border-brand-200 dark:border-brand-800 pb-6"
+    >
+      <button
+        type="button"
+        data-action="click->sidebar#open"
+        aria-label="<%= t('.on_this_page') %>"
+        class="lg:hidden text-brand-900 dark:text-brand-100 hover:text-accent transition-colors"
+      >
+        <%= icon 'bars-3', class: 'w-6 h-6' %>
+      </button>
+
+      <div class="text-center w-full">
+        <h1
+          class="font-serif text-4xl font-bold text-brand-900 dark:text-brand-100 tracking-tight"
+        >
+          ATS Blog
+        </h1>
+        <p class="font-semibold text-xs">
+          <%=
+            link_to 'PT',
+                    url_for(locale: :pt),
+                    class:
+                      I18n.locale == :pt ? 'text-accent underline' : 'text-brand-400 hover:text-accent'
+          %>
+          <span class="text-brand-300 dark:text-brand-600">|</span>
+          <%=
+            link_to 'EN',
+                    url_for(locale: :en),
+                    class:
+                      I18n.locale == :en ? 'text-accent underline' : 'text-brand-400 hover:text-accent'
+          %>
+        </p>
+      </div>
+
+      <% if user_signed_in? %>
+        <%=
+          link_to t('.new_post'),
+                  new_post_path,
+                  class:
+                    'shrink-0 text-sm text-accent hover:text-accent-dark border-b border-accent-light hover:border-b-2'
+        %>
+      <% end %>
+    </header>
+
+    <% if @posts_by_month.any? %>
+      <% @posts_by_month.each do |month, posts| %>
+        <section id="<%= month.strftime('%Y-%m') %>" class="mb-12 scroll-mt-24">
+          <h2
+            class="font-serif text-2xl font-bold text-brand-900 dark:text-brand-100 border-b border-brand-200 dark:border-brand-800 pb-2 mb-4"
+          >
+            <%= l(month, format: '%Y - %B') %>
+          </h2>
+          <ul
+            class="space-y-3 list-disc pl-5 marker:text-brand-300 dark:marker:text-brand-600"
+          >
+            <%= render posts %>
+          </ul>
+        </section>
+      <% end %>
+    <% else %>
+      <p class="text-brand-500 dark:text-brand-400 italic"><%= t('.no_posts') %></p>
+    <% end %>
+  </div>
+
+  <aside class="hidden lg:block">
+    <nav class="sticky top-24 text-sm">
+      <h3
+        class="uppercase tracking-widest text-xs text-brand-400 dark:text-brand-500 mb-3"
+      >
+        <%= t('.on_this_page') %>
+      </h3>
+      <%= render 'month_nav' %>
+    </nav>
+  </aside>
+
+  <div data-sidebar-target="panel" class="hidden fixed inset-0 z-50 lg:hidden">
+    <div
+      data-action="click->sidebar#close"
+      class="absolute inset-0 bg-black/40"
+    ></div>
+    <nav
+      class="absolute top-0 right-0 h-full w-64 max-w-[80%] bg-white dark:bg-brand-900 shadow-xl p-6 overflow-y-auto"
+    >
+      <div class="flex items-center justify-between mb-4">
+        <h3
+          class="uppercase tracking-widest text-xs text-brand-400 dark:text-brand-500"
+        >
+          <%= t('.on_this_page') %>
+        </h3>
+        <button
+          type="button"
+          data-action="click->sidebar#close"
+          aria-label="<%= t('.on_this_page') %>"
+          class="text-brand-900 dark:text-brand-100 hover:text-accent transition-colors"
+        >
+          <%= icon 'x-mark', class: 'w-6 h-6' %>
+        </button>
+      </div>
+      <%= render 'month_nav' %>
+    </nav>
+  </div>
 </div>

@@ -3,7 +3,8 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
 
   def index
-    @posts = Post.order(created_at: :desc)
+    @posts_by_month = Post.order(created_at: :desc)
+                          .group_by { |post| post.created_at.to_date.beginning_of_month }
     @post = Post.new
   end
 
