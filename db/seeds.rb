@@ -47,6 +47,7 @@ if Rails.env.development?
       content_type: Marcel::MimeType.for(image)
     )
     body = ActionText::Content.new("<p>#{attrs[:intro]}</p>").append_attachables(blob)
-    Post.create!(title: attrs[:title], body: body)
+    date = (i * 18).days.ago
+    Post.create!(title: attrs[:title], body: body, created_at: date, updated_at: date)
   end
 end

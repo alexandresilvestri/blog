@@ -29,3 +29,8 @@
 
 en:
   hello: "Hello world"
+  posts:
+    index:
+      on_this_page: "On this page"
+      no_posts: "No posts yet."
+      new_post: "New post"

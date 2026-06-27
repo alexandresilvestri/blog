@@ -5,6 +5,31 @@ RSpec.describe 'Posts', type: :request do
   let!(:post_record) { Post.create!(title: 'Hello', body: 'hi') }
   let(:valid_params) { { post: { title: 'New', body: 'body text' } } }
 
+  describe 'index grouped by month with locale switching' do
+    let!(:dated_post) do
+      Post.create!(title: 'Grouped post', body: 'body',
+                   created_at: Time.utc(2026, 6, 15))
+    end
+
+    it 'renders month headings, sidebar and titles in English by default' do
+      get root_path
+      expect(response.body).to include('2026 - June')
+      expect(response.body).to include('On this page')
+      expect(response.body).to include('Grouped post')
+    end
+
+    it 'localizes month headings and sidebar in Portuguese' do
+      get root_path, params: { locale: 'pt' }
+      expect(response.body).to include('2026 - Junho')
+      expect(response.body).to include('Nesta página')
+    end
+
+    it 'falls back to the default locale for unknown values' do
+      get root_path, params: { locale: 'xx' }
+      expect(response.body).to include('On this page')
+    end
+  end
+
   describe 'public access (logged out)' do
     it 'allows index' do
       get posts_path

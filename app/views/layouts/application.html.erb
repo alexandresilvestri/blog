@@ -23,6 +23,7 @@
       document.documentElement.classList.toggle('dark', dark); })();
     <% end %>
 
+    <%= preload_link_tag asset_path('InterVariable.woff2'), as: 'font', type: 'font/woff2', crossorigin: 'anonymous' %>
     <%= stylesheet_link_tag 'tailwind', 'data-turbo-track': 'reload' %>
     <%= stylesheet_link_tag 'actiontext', 'data-turbo-track': 'reload' %>
     <%= javascript_importmap_tags %>
@@ -45,7 +46,12 @@
               <%=
                 image_tag '/github.png',
                           alt: 'Github Profile',
-                          class: 'w-8 h-8 shrink-0'
+                          class: 'w-8 h-8 shrink-0 dark:hidden'
+              %>
+              <%=
+                image_tag '/github-white-icon.png',
+                          alt: 'Github Profile',
+                          class: 'w-8 h-8 shrink-0 hidden dark:block'
               %>
             <% end %>
           </div>

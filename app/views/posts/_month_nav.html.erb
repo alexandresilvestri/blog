@@ -1,0 +1,13 @@
+<ul class="space-y-2">
+  <% @posts_by_month.each_key do |month| %>
+    <li>
+      <%=
+        link_to l(month, format: '%Y - %B'),
+                "##{month.strftime('%Y-%m')}",
+                data: { action: 'click->sidebar#close' },
+                class:
+                  'text-brand-500 dark:text-brand-400 hover:text-accent transition-colors'
+      %>
+    </li>
+  <% end %>
+</ul>
