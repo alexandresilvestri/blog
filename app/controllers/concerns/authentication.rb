@@ -12,7 +12,7 @@ module Authentication
   end
 
   def user_signed_in?
-    auth_disabled? || current_user.present?
+    current_user.present?
   end
 
   def require_authentication
