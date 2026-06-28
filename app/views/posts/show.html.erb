@@ -13,7 +13,7 @@
   </header>
 
   <div
-    class="prose dark:prose-invert trix-content text-brand-700 dark:text-brand-300 leading-relaxed"
+    class="text-xl prose dark:prose-invert trix-content text-brand-700 dark:text-brand-300 leading-relaxed"
   >
     <%= @post.body %>
   </div>
@@ -25,7 +25,26 @@
       link_to '← All posts',
               posts_path,
               class:
-                'text-sm text-accent border-b border-accent-light hover:border-b-2'
+                'text-lg text-accent border-b border-accent-light hover:border-b-2'
     %>
+    <% if user_signed_in? %>
+      <div class="flex items-center gap-4 ml-auto">
+        <%=
+          link_to edit_post_path(@post),
+                  'aria-label': 'Edit',
+                  class:
+                    'text-brand-400 dark:text-brand-500 hover:text-accent transition-colors' do
+        %>
+          <%= icon 'pencil-square', class: 'w-5 h-5' %>
+        <% end %>
+        <%= button_to @post, method: :delete,
+          form_class: 'inline-flex',
+          'aria-label': 'Delete',
+          data: { turbo_confirm: 'Confirme a exclusão' },
+          class: 'text-brand-400 dark:text-brand-500 hover:text-red-600 transition-colors' do %>
+          <%= icon 'trash', class: 'w-5 h-5' %>
+        <% end %>
+      </div>
+    <% end %>
   </footer>
 </article>

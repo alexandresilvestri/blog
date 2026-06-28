@@ -40,6 +40,12 @@ RSpec.describe 'Posts', type: :request do
       get post_path(post_record)
       expect(response).to have_http_status(:ok)
     end
+
+    it 'hides edit and delete controls on show' do
+      get post_path(post_record)
+      expect(response.body).not_to include(edit_post_path(post_record))
+      expect(response.body).not_to include('Confirme a exclusão')
+    end
   end
 
   describe 'gated actions (logged out)' do
@@ -92,6 +98,17 @@ RSpec.describe 'Posts', type: :request do
       expect do
         delete post_path(post_record)
       end.to change(Post, :count).by(-1)
+    end
+
+    it 'shows edit and delete controls on show' do
+      get post_path(post_record)
+      expect(response.body).to include(edit_post_path(post_record))
+      expect(response.body).to include('Confirme a exclusão')
+    end
+
+    it 'does not render the delete control in the index list' do
+      get posts_path
+      expect(response.body).not_to include('Confirme a exclusão')
     end
   end
 
