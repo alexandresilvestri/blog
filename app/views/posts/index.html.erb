@@ -57,12 +57,12 @@
       <% @posts_by_month.each do |month, posts| %>
         <section id="<%= month.strftime('%Y-%m') %>" class="mb-12 scroll-mt-24">
           <h2
-            class="font-serif text-2xl font-bold text-brand-900 dark:text-brand-100 border-b border-brand-200 dark:border-brand-800 pb-2 mb-4"
+            class="font-serif text-3xl font-bold text-brand-900 dark:text-brand-100 border-b border-brand-200 dark:border-brand-800 pb-2 mb-4"
           >
             <%= l(month, format: '%Y - %B') %>
           </h2>
           <ul
-            class="space-y-3 list-disc pl-5 marker:text-brand-300 dark:marker:text-brand-600"
+            class="space-y-3 text-xl list-disc pl-5 marker:text-brand-300 dark:marker:text-brand-600"
           >
             <%= render posts %>
           </ul>
