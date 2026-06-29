@@ -17,6 +17,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
+      TranslatePostJob.perform_later(@post)
       redirect_to @post, notice: 'Post created'
     else
       render :new, status: :unprocessable_entity
@@ -29,6 +30,7 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
+      TranslatePostJob.perform_later(@post)
       redirect_to @post, notice: 'Post was sucessfully updated.'
     else
       render :edit, status: :unprocessable_entity
