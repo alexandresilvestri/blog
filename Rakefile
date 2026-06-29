@@ -24,17 +24,17 @@ namespace :dev do
 
   desc 'run migrations'
   task :migrate do
-    sh 'docker compose exec web bin/rails db:migrate'
+    sh 'docker compose exec app bin/rails db:migrate'
   end
 
   desc 'run seeds'
   task :seed do
-    sh 'docker compose exec web bin/rails db:seeds'
+    sh 'docker compose exec app bin/rails db:seed'
   end
 
   desc 'clean database (drop, recreate, migrate, seed)'
   task :clean do
-    sh 'docker compose exec web bin/rails db:reset'
+    sh 'docker compose exec app bin/rails db:reset'
   end
 
   desc 'Run tests'
