@@ -140,4 +140,47 @@ RSpec.describe 'Posts', type: :request do
       expect(response.body).to include('sample.png')
     end
   end
+
+  describe 'translation' do
+    let!(:translatable) do
+      Post.create!(title: 'Olá mundo', body: 'corpo',
+                   title_en: 'Hello world', body_en: 'english body')
+    end
+
+    describe 'enqueuing the translation job (signed in)' do
+      before { sign_in(admin) }
+
+      it 'enqueues a translation job on create' do
+        expect do
+          post posts_path, params: valid_params
+        end.to have_enqueued_job(TranslatePostJob)
+      end
+
+      it 'enqueues a translation job on update' do
+        expect do
+          patch post_path(post_record), params: { post: { title: 'Changed' } }
+        end.to have_enqueued_job(TranslatePostJob)
+      end
+    end
+
+    describe 'show content by locale' do
+      it 'renders the English translation when locale is en' do
+        get post_path(translatable, locale: 'en')
+        expect(response.body).to include('Hello world')
+        expect(response.body).to include('english body')
+        expect(response.body).not_to include('Olá mundo')
+      end
+
+      it 'renders the Portuguese original when locale is pt' do
+        get post_path(translatable, locale: 'pt')
+        expect(response.body).to include('Olá mundo')
+        expect(response.body).to include('corpo')
+      end
+    end
+
+    it 'uses the English title in the index list when locale is en' do
+      get posts_path(locale: 'en')
+      expect(response.body).to include('Hello world')
+    end
+  end
 end

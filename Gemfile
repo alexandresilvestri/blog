@@ -45,4 +45,5 @@ group :test do
   gem 'testcontainers-postgres'
   gem 'capybara'
   gem 'selenium-webdriver'
+  gem 'webmock'
 end

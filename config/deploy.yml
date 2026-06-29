@@ -30,10 +30,12 @@ env:
     - POSTGRES_PASSWORD
     - DATABASE_URL
     - RESEND_API_KEY
+    - OPENROUTER_API_KEY
   clear:
     RAILS_ENV: production
     SOLID_QUEUE_IN_PUMA: true
     RAILS_LOG_LEVEL: info
+    OPENROUTER_MODEL: anthropic/claude-sonnet-4
 
 aliases:
   console: app exec --interactive --reuse "bin/rails console"

@@ -22,6 +22,11 @@ namespace :dev do
     sh 'docker compose down -v'
   end
 
+  desc 'Open container console'
+  task :c do
+    sh 'docker exec -it blog-app-1 sh'
+  end
+
   desc 'run migrations'
   task :migrate do
     sh 'docker compose exec app bin/rails db:migrate'
