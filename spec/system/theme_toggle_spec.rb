@@ -4,6 +4,7 @@ RSpec.describe 'Theme toggle', type: :system do
   before { driven_by(:selenium_chrome_headless) }
 
   it 'toggles dark mode and persists across reloads' do
+    current_window.resize_to(1280, 800)
     visit root_path
     page.execute_script("localStorage.setItem('theme', 'light')")
     visit root_path

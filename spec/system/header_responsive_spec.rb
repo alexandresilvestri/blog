@@ -3,6 +3,15 @@ require 'rails_helper'
 RSpec.describe 'Header responsiveness', type: :system do
   before { driven_by(:selenium_chrome_headless) }
 
+  SOCIAL_ALTS = ['Github Profile', 'Gitlab Profile', 'LinkedIn Profile'].freeze
+
+  def first_visible(alt, prop)
+    page.evaluate_script(
+      "Array.from(document.querySelectorAll(\"img[alt='#{alt}']\"))" \
+      ".map(e => e.#{prop}).find(v => v > 0) || 0"
+    )
+  end
+
   it 'hides the brand text on mobile but keeps the fox icon' do
     current_window.resize_to(375, 700)
     visit root_path
@@ -18,65 +27,42 @@ RSpec.describe 'Header responsiveness', type: :system do
     expect(page).to have_text('Alexandre Silvestri')
   end
 
-  it 'keeps the github and gitlab icons square at mobile width' do
-    current_window.resize_to(375, 700)
+  it 'shows the social icons inline on desktop, square, w-8, aligned with the fox' do
+    current_window.resize_to(1280, 800)
     visit root_path
 
-    %w[Github\ Profile Gitlab\ Profile].each do |alt|
-      visible_size = lambda do |dimension|
-        page.evaluate_script(
-          "Array.from(document.querySelectorAll(\"img[alt='#{alt}']\"))" \
-          ".map(e => e.#{dimension}).find(v => v > 0) || 0"
-        )
-      end
-      width = visible_size.call('offsetWidth')
-      height = visible_size.call('offsetHeight')
-      expect(width).to be > 0
+    fox_top = first_visible('Fox', 'getBoundingClientRect().top')
+    SOCIAL_ALTS.each do |alt|
+      width = first_visible(alt, 'offsetWidth')
+      height = first_visible(alt, 'offsetHeight')
+      expect(width).to eq(32)
       expect(width).to eq(height)
+      expect(first_visible(alt, 'getBoundingClientRect().top')).to eq(fox_top)
     end
   end
 
-  it 'sizes the github and gitlab icons w-6 on mobile and w-8 on desktop' do
-    visible_width = lambda do |alt|
-      page.evaluate_script(
-        "Array.from(document.querySelectorAll(\"img[alt='#{alt}']\"))" \
-        '.map(e => e.offsetWidth).find(v => v > 0) || 0'
-      )
-    end
-
+  it 'hides the inline social icons on mobile and shows them in the opened sidebar' do
     current_window.resize_to(375, 700)
     visit root_path
-    %w[Github\ Profile Gitlab\ Profile].each do |alt|
-      expect(visible_width.call(alt)).to eq(24)
+
+    SOCIAL_ALTS.each do |alt|
+      expect(first_visible(alt, 'offsetWidth')).to eq(0)
     end
 
-    current_window.resize_to(1280, 800)
-    visit root_path
-    %w[Github\ Profile Gitlab\ Profile].each do |alt|
-      expect(visible_width.call(alt)).to eq(32)
+    find("button[aria-label='On this page']").click
+
+    within("[data-sidebar-target='panel']") do
+      SOCIAL_ALTS.each { |alt| expect(page).to have_css("img[alt='#{alt}']", visible: true) }
     end
+    SOCIAL_ALTS.each { |alt| expect(first_visible(alt, 'offsetWidth')).to eq(24) }
   end
 
-  it 'nudges github and gitlab below the fox on mobile, aligned on desktop' do
-    visible_top = lambda do |alt|
-      page.evaluate_script(
-        "Array.from(document.querySelectorAll(\"img[alt='#{alt}']\"))" \
-        '.map(e => e.getBoundingClientRect().top).find(v => v > 0) || 0'
-      )
-    end
-
-    current_window.resize_to(375, 700)
-    visit root_path
-    fox_top = visible_top.call('Fox')
-    %w[Github\ Profile Gitlab\ Profile].each do |alt|
-      expect(visible_top.call(alt)).to be > fox_top
-    end
-
+  it 'links the LinkedIn icon to the profile' do
     current_window.resize_to(1280, 800)
     visit root_path
-    fox_top = visible_top.call('Fox')
-    %w[Github\ Profile Gitlab\ Profile].each do |alt|
-      expect(visible_top.call(alt)).to eq(fox_top)
-    end
+
+    expect(page).to have_css(
+      "a[href='https://www.linkedin.com/in/alexandre-silvestri'] img[alt='LinkedIn Profile']"
+    )
   end
 end
