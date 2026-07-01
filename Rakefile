@@ -27,6 +27,11 @@ namespace :dev do
     sh 'docker exec -it blog-app-1 sh'
   end
 
+  desc 'Connect pgcli to local db'
+  task :pgcli do
+    sh 'pgcli postgres://alexandre@localhost:5432/blog_dev'
+  end
+
   desc 'run migrations'
   task :migrate do
     sh 'docker compose exec app bin/rails db:migrate'
