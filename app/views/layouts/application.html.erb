@@ -17,9 +17,7 @@
     <link rel="gitlab-icon" href="/gitlab.png" />
 
     <%= javascript_tag nonce: true do %>
-      (function () { var stored = localStorage.getItem('theme'); var dark =
-      stored ? stored === 'dark' :
-      window.matchMedia('(prefers-color-scheme:dark)').matches;
+      (function () { var dark = localStorage.getItem('theme') === 'dark';
       document.documentElement.classList.toggle('dark', dark); })();
     <% end %>
 
@@ -41,41 +39,9 @@
             <h1 class="hidden sm:block">Alexandre Silvestri</h1>
           <% end %>
         </div>
-        <div class="flex gap-4">
-          <div class="mt-1 sm:mt-0">
-            <%= link_to "https://github.com/alexandresilvestri", target: "_blank", class: "flex itens-center gap-2 text-left text-2xl font-serif font-bold text-brand-900 dark:text-brand-100" do %>
-              <%=
-                image_tag '/github.png',
-                          alt: 'Github Profile',
-                          class: 'w-6 h-6 sm:w-8 sm:h-8 shrink-0 dark:hidden'
-              %>
-              <%=
-                image_tag '/github-white-icon.png',
-                          alt: 'Github Profile',
-                          class: 'w-6 h-6 sm:w-8 sm:h-8 shrink-0 hidden dark:block'
-              %>
-            <% end %>
-          </div>
-          <div class="mt-1 sm:mt-0">
-            <%= link_to "https://gitlab.com/alexandre-silvestri", target: "_blank", class: "flex itens-center gap-2 text-left text-2xl font-serif font-bold text-brand-900 dark:text-brand-100" do %>
-              <%=
-                image_tag '/gitlab.png',
-                          alt: 'Gitlab Profile',
-                          class: 'w-6 h-6 sm:w-8 sm:h-8 shrink-0'
-              %>
-            <% end %>
-          </div>
-          <div class="flex items-center">
-            <button
-              type="button"
-              data-controller="theme"
-              data-action="theme#toggle"
-              aria-label="Toggle dark mode"
-              class="text-brand-900 dark:text-brand-100 hover:text-accent transition-colors"
-            >
-              <%= icon 'moon', class: 'w-6 h-6 sm:w-8 sm:h-8 hidden dark:block' %>
-              <%= icon 'sun', class: 'w-6 h-6 sm:w-8 sm:h-8 block dark:hidden' %>
-            </button>
+        <div class="flex gap-4 items-center">
+          <div class="hidden lg:flex gap-4 items-center">
+            <%= render 'layouts/nav_icons' %>
           </div>
           <%= yield :header_actions %>
           <% if user_signed_in? %>

@@ -1,0 +1,36 @@
+<%= link_to "https://github.com/alexandresilvestri", target: "_blank", class: "flex itens-center gap-2 text-left text-2xl font-serif font-bold text-brand-900 dark:text-brand-100" do %>
+  <%=
+    image_tag '/github.png',
+              alt: 'Github Profile',
+              class: 'w-6 h-6 sm:w-8 sm:h-8 shrink-0 dark:hidden'
+  %>
+  <%=
+    image_tag '/github-white-icon.png',
+              alt: 'Github Profile',
+              class: 'w-6 h-6 sm:w-8 sm:h-8 shrink-0 hidden dark:block'
+  %>
+<% end %>
+<%= link_to "https://gitlab.com/alexandre-silvestri", target: "_blank", class: "flex itens-center gap-2 text-left text-2xl font-serif font-bold text-brand-900 dark:text-brand-100" do %>
+  <%=
+    image_tag '/gitlab.png',
+              alt: 'Gitlab Profile',
+              class: 'w-6 h-6 sm:w-8 sm:h-8 shrink-0'
+  %>
+<% end %>
+<%= link_to "https://www.linkedin.com/in/alexandre-silvestri", target: "_blank", class: "flex itens-center gap-2 text-left text-2xl font-serif font-bold text-brand-900 dark:text-brand-100" do %>
+  <%=
+    image_tag '/linkedin.png',
+              alt: 'LinkedIn Profile',
+              class: 'w-6 h-6 sm:w-8 sm:h-8 shrink-0'
+  %>
+<% end %>
+<button
+  type="button"
+  data-controller="theme"
+  data-action="theme#toggle"
+  aria-label="Toggle dark mode"
+  class="text-brand-900 dark:text-brand-100 hover:text-accent transition-colors"
+>
+  <%= icon 'moon', class: 'w-6 h-6 sm:w-8 sm:h-8 hidden dark:block' %>
+  <%= icon 'sun', class: 'w-6 h-6 sm:w-8 sm:h-8 block dark:hidden' %>
+</button>
