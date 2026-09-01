@@ -1,1 +1,1 @@
-Simple blog builded with ruby on rails 8 + postgres 18 and hosting on Digital Ocean VPS
+Config-only Rails 8 skeleton: Docker, Kamal, RSpec, RuboCop, Prettier and CI setup with no application features.
