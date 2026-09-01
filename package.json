@@ -1,7 +1,7 @@
 {
   "name": "blog",
   "version": "1.0.0",
-  "description": "Simple blog builded with ruby on rails 8 + postgres 18 and hosting on Digital Ocean VPS",
+  "description": "Config-only Rails 8 skeleton with no application features",
   "main": "index.js",
   "directories": {
     "lib": "lib"
