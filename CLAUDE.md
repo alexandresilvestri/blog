@@ -1,3 +1,4 @@
+- This is a 100% build to learning project
 - Respect rails conventions and its ecosystem
 - Always keep frontend responsive for mobile
 - Always add tests after implementation, be it modification, correction, improvements or creation of a new feature.

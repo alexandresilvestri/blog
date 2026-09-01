@@ -28,8 +28,3 @@ pt:
       - Out
       - Nov
       - Dez
-  posts:
-    index:
-      on_this_page: "Nesta página"
-      no_posts: "Nenhum post ainda."
-      new_post: "Novo post"
