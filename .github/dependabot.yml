@@ -1,0 +1,51 @@
+version: 2
+updates:
+  - package-ecosystem: "bun"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    cooldown:
+      default-days: 5
+    commit-message:
+      prefix: "chore(deps)"
+    assignees:
+      - "alexandresilvestri"
+    groups:
+      bun-minor-patch:
+        update-types:
+          - "minor"
+          - "patch"
+
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    cooldown:
+      default-days: 5
+    commit-message:
+      prefix: "chore(deps)"
+    assignees:
+      - "alexandresilvestri"
+    groups:
+      docker-minor-patch:
+        update-types:
+          - "minor"
+          - "patch"
+
+  - package-ecosystem: "docker-compose"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    cooldown:
+      default-days: 5
+    commit-message:
+      prefix: "chore(deps)"
+    assignees:
+      - "alexandresilvestri"
+    groups:
+      compose-minor-patch:
+        update-types:
+          - "minor"
+          - "patch"
+
+
