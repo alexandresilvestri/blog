@@ -4,8 +4,8 @@ env = "BUN_PUBLIC_*"
 
 [fmt]
 printWidth = 80
-semi = false 
+semi = false
 singleQuote = true
 useTabs = false
-traillingComma = false
+trailingComma = "none"
 
