@@ -11,5 +11,5 @@ COPY styles ./styles
 ENV NODE_ENV=production
 USER bun
 EXPOSE 3000
-CMD ["bun", "src/index.ts"]
+CMD ["bun", "--preload", "./src/instrument.ts", "src/index.ts"]
 
