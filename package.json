@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "bun --hot --preload ./src/instrument.ts src/index.ts",
-    "start": "NODE_ENV=production bun --preload ./src/instrument.ts src/index.ts",
+    "dev": "bun --hot --preload ./src/server/instrument.ts src/index.ts",
+    "start": "NODE_ENV=production bun --preload ./src/server/instrument.ts src/index.ts",
     "build": "bun run build.ts"
   },
   "dependencies": {
