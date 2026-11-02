@@ -1,4 +1,4 @@
-import { serve } from 'bun'
+import { Elysia } from 'elysia'
 import index from './index.html'
 
 export const server = serve({
