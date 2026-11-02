@@ -9,3 +9,6 @@ singleQuote = true
 useTabs = false
 trailingComma = "none"
 
+[test]
+coverage = true
+
