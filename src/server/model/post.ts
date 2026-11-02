@@ -1,27 +1,16 @@
 import type { UUID, post } from '@types'
+import { db } from '@db'
 
 export class Post {
-  id?: UUID
-  title: string
-  body: string
-  createdAt?: Date
+  async getById(id: UUID): Promise<post > {
+      const requestedPost = await db.query.postSchema.findFirst({
+      where: (table, { eq }) => eq(table.id, id)
+      })
 
-  constructor(post: post) {
-    this.id = post.id
-    this.title = post.title
-    this.body = post.body
-    this.createdAt = post.createdAt
-  }
-
-  create(post: post): post { 
-
-  }
-
-  getAll(): post[] {
-
-  }
-
-  getById(id: UUID): post {
-
+      if (requestedPost) {
+        return requestedPost
+      } else {
+        throw new Error('Post not found')
+      }
   }
 }

@@ -1,8 +1,8 @@
 import type { UUID } from './index'
 
 export type post = {
-  id?: UUID,
+  id: UUID,
   title: string,
   body: string,
-  createdAt?: Date,
+  createdAt: Date,
 }

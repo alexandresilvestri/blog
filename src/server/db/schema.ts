@@ -1,6 +1,6 @@
 import { pgTable, varchar, timestamp, text } from 'drizzle-orm/pg-core'
 
-export const post = pgTable(
+export const postSchema = pgTable(
   'post',
   {
     id: varchar('id')
@@ -8,7 +8,7 @@ export const post = pgTable(
         .primaryKey(),
     title: varchar('title', { length: 255 }).notNull().unique(),
     body: text('body').notNull(),
-    createAt: timestamp('created_at').defaultNow().notNull()
+    createdAt: timestamp('created_at').defaultNow().notNull()
   }
 )
 
