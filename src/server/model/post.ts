@@ -13,8 +13,8 @@ export class Post {
     this.createdAt = post.createdAt
   }
 
-  create(post: post): post {
-    
+  create(post: post): post { 
+
   }
 
   getAll(): post[] {

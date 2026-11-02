@@ -4,8 +4,8 @@ import {
   CardDescription,
   CardHeader,
   CardTitle
-} from '@/components/ui/card'
-import { APITester } from './APITester'
+} from '@ui'
+import { APITester } from './components/APITester'
 import './index.css'
 
 import logo from './logo.svg'

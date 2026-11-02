@@ -24,13 +24,17 @@
 
     // Path aliases
     "paths": {
-      "@routes": ["src/server/routes/index.ts"],
-      "@controller": ["src/server/controller/index.ts"],
-      "@models": ["src/server/model/index.ts"],
-      "@services": ["src/server/service/index.ts"],
-      "@types": ["src/types/index.ts"],
-      "@schemas": ["src/schemas/index.ts"],
-      "@/*": ["./src/*"]
+      // server
+      "@routes": ["./src/server/routes/index.ts"],
+      "@controller": ["./src/server/controller/index.ts"],
+      "@models": ["./src/server/model/index.ts"],
+      "@services": ["./src/server/service/index.ts"],
+      "@types": ["./src/types/index.ts"],
+      "@schemas": ["./src/schemas/index.ts"],
+      "@/*": ["./src/*"],
+      // client
+      "@ui": ["./src/client/components/ui/index.ts"],
+      "@utils": ["./src/client/lib/utils.ts"]
     },
 
     // Some stricter flags (disabled by default)

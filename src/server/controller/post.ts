@@ -1,6 +1,6 @@
 import type { UUID, post } from '@types'
 
-export class PostController {
+class PostController {
   create(data: post) {
   
   }
