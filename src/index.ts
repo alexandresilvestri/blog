@@ -1,6 +1,7 @@
+import './server/instrument'
 import { Elysia } from 'elysia'
 import { openapi } from '@elysia/openapi'
-import index from './index.html'
+import index from '../client/index.html'
 
 new Elysia()
   .use(openapi())
