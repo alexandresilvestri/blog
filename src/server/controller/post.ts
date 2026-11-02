@@ -1,7 +1,7 @@
-import type { UUID, Post } from '../../types/index.ts'
+import type { UUID, post } from '@types'
 
-class PostController {
-  create(data: Post) {
+export class PostController {
+  create(data: post) {
   
   }
 

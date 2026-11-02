@@ -1,5 +1,5 @@
 import { Elysia, t } from 'elysia'
-import { PostController } from '../controller/post'
+import { PostController } from '@controller'
 
 const controller = new PostController()
 
