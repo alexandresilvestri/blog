@@ -22,7 +22,14 @@
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
 
+    // Path aliases
     "paths": {
+      "@routes": ["src/server/routes/index.ts"],
+      "@controller": ["src/server/controller.index.ts"],
+      "@models": ["src/server/model/index.ts"],
+      "@services": ["src/server/service/index.ts"],
+      "@types": ["src/types/index.ts"],
+      "@schemas": ["src/schemas/index.ts"],
       "@/*": ["./src/*"]
     },
 
