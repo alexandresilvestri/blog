@@ -2,7 +2,7 @@ import type { UUID, post } from '@types'
 import { db } from '@db'
 
 export class Post {
-  async getById(id: UUID): Promise<post > {
+  async getById(id: UUID): Promise<post> {
       const requestedPost = await db.query.postSchema.findFirst({
       where: (table, { eq }) => eq(table.id, id)
       })
@@ -12,5 +12,9 @@ export class Post {
       } else {
         throw new Error('Post not found')
       }
+  }
+
+  async getAll(): Promise<post[]> {
+    return await db.query.postSchema.findMany()
   }
 }

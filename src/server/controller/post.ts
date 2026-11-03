@@ -7,4 +7,9 @@ export class PostController {
   async getById(id: UUID): Promise<post> {
     return await post.getById(id)
   }
+
+  async getAll() {
+    return await post.getAll()
+  }
+
 }

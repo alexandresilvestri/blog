@@ -20,3 +20,17 @@ export const postRoutes = new Elysia({ prefix: '/post'})
       tags: ['Posts']
     }
   })
+
+  .get('/', () => controller.getAll(), {
+    response: t.Array(t.Object({
+      id: t.String(),
+      title: t.String(),
+      body: t.String(),
+      createdAt: t.Date()
+    })),
+    detail: {
+      summary: "Get all posts",
+      tags: ["Posts"]
+    }
+  })
+ 
