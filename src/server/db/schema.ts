@@ -1,6 +1,6 @@
 import { pgTable, varchar, timestamp, text } from 'drizzle-orm/pg-core'
 
-export const postSchema = pgTable(
+export const post = pgTable(
   'post',
   {
     id: varchar('id')
