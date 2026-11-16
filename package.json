@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "bun --hot --preload ./src/server/instrument.ts src/index.ts",
     "start": "NODE_ENV=production bun --preload ./src/server/instrument.ts src/index.ts",
-    "build": "bun run build.ts"
+    "build": "bun run build.ts",
+    "db:generate": "bun run drizzle-kit generate",
+    "db:migrate": "bun run drizzle-kit migrate",
+    "db:seed": "bun src/server/db/seeds.ts"
   },
   "dependencies": {
     "@elysia/openapi": "^1.4.17",

@@ -4,7 +4,7 @@ import { postSchema } from '@schemas'
 
 const controller = new PostController()
 
-export const postRoutes = new Elysia({ prefix: '/post'})
+export const postRoutes = new Elysia({ prefix: '/posts'})
 
   .get('/:id', ({ params: { id } } ) => controller.getById(id), {
     params: t.Object({

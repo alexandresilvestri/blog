@@ -3,7 +3,7 @@ import { db } from '@db'
 
 export class Post {
   async getById(id: string): Promise<post> {
-      const requestedPost = await db.query.post.findFirst({
+      const requestedPost = await db.query.posts.findFirst({
       where: (table, { eq }) => eq(table.id, id)
       })
 
@@ -15,6 +15,6 @@ export class Post {
 
   }
   async getAll(): Promise<post[]> {
-    return await db.query.post.findMany()
+    return await db.query.posts.findMany()
   }
 }

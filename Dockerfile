@@ -6,6 +6,8 @@ RUN bun install --frozen-lockfile
 
 COPY bunfig.toml tsconfig.json ./
 COPY src ./src
+COPY drizzle.config.ts ./
+COPY drizzle ./drizzle
 
 ENV NODE_ENV=production
 ENV BUN_PUBLIC_SENTRY_DSN=${BUN_PUBLIC_SENTRY_DSN}

@@ -29,7 +29,6 @@
       "@controller": ["./src/server/controller/index.ts"],
       "@models": ["./src/server/model/index.ts"],
       "@services": ["./src/server/service/index.ts"],
-      "@types": ["./src/types/index.ts"],
       "@schemas": ["./src/schemas/index.ts"],
       "@db": ["./src/server/db/index.ts"],
       "@schemadb": ["./src/server/db/schema.ts"],
