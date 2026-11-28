@@ -1,11 +1,21 @@
 import { t, type Static } from 'elysia'
 
-export const postSchema = t.Object({
+const post = t.Object({
   id: t.String(),
   title: t.String(),
   body: t.String(),
   createdAt: t.Date()
 })
 
-export type Post = Static<typeof postSchema>
+export const Post = {
+  Entity: post,
+  Create: t.Omit(post, ['id', 'createdAt'])
+}
+
+export namespace Post {
+  export type Entity = Static<typeof Post.Entity>
+  export type Create = Static<typeof Post.Create>
+}
+
+
 

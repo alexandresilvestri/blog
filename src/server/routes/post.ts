@@ -1,6 +1,6 @@
 import { Elysia, t } from 'elysia'
 import { PostController } from '@controller'
-import { postSchema } from '@schemas'
+import { Post } from '@schemas'
 
 const controller = new PostController()
 
@@ -10,7 +10,7 @@ export const postRoutes = new Elysia({ prefix: '/posts'})
     params: t.Object({
       id: t.String()
     }),  
-    response: postSchema,
+    response: Post.Entity,
     detail: {
       summary: "Get post by ID",
       tags: ['Posts']
@@ -18,9 +18,18 @@ export const postRoutes = new Elysia({ prefix: '/posts'})
   })
 
   .get('/', () => controller.getAll(), {
-    response: t.Array(postSchema),
+    response: t.Array(Post.Entity),
     detail: {
       summary: "Get all posts",
+      tags: ["Posts"]
+    }
+  })
+
+  .post('/', ({ body }) => controller.create(body), {
+    body: Post.Create,
+    response: Post.Entity,
+    detail: {
+      summary: "Create post",
       tags: ["Posts"]
     }
   })
